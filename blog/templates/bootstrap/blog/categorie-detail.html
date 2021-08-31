@@ -1,0 +1,54 @@
+{% extends 'bootstrap/base.html' %}
+{% block content%}
+<!-- Page Content -->
+<div class="container">
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">{{ instance.title }}</h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="index.html">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Blog Home 2</li>
+  </ol>
+  <!-- Intro Content -->
+  <div class="row">
+    <div class="col-lg-6">
+      <img class="img-fluid rounded mb-4" src="/media/{{ object.thumbnail.image }}" alt="">
+    </div>
+    <div class="col-lg-6">
+    </div>
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-md-8">
+    {% for object in objects %}
+    <!-- Blog Post -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <a href="#">
+              <img class="img-fluid rounded" src="/media/{{ object.thumbnail.image }}" alt="">
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="card-title"><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a></h2>
+            <p class="card-text">{{ object.description }}</p>
+            <a href="{{ object.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">{{ object.timestamp }} | {{ object.updated }}</div>
+    </div>
+    {% endfor %}
+
+  {% include "bootstrap/includes/pagination.html" %}
+  </div>
+  {% include "bootstrap/includes/sidebar-right.html" %}
+  </div>
+</div>
+</div>
+<!-- /.container -->
+{% endblock content%}

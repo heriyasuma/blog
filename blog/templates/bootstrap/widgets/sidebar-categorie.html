@@ -1,0 +1,10 @@
+{% extends 'bootstrap/includes/sidebar-right.html' %}
+{% block sidebar %}
+<ul>
+{% for object in objects %}
+  <li><a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+      <small><br />{{ object.timestamp }} | {{ object.updated }}</small><br />
+      <p>{{ object.description }}<p></li>
+{% endfor %}
+</ul>
+{% endblock sidebar %}

@@ -1,0 +1,63 @@
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 4rem;">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Categories</h4>
+          <ol class="list-unstyled mb-0">
+            {% for object in categorie %}
+            <li><a href="{{ object.get_absolute_url }}">{{object.title}}</a></li>
+            {% endfor %}
+          </ol>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Random Post</h4>
+          <ol class="list-unstyled">
+            {% for object in random_post %}
+            <li><a href="{{ object.get_absolute_url }}">{{object.title}}</a></li>
+            {% endfor %}
+          </ol>
+        </div>
+
+        <div class="list-group p-4">
+          {% for object in random_post %}
+          <a href="{{ object.get_absolute_url }}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img src="/media/{{object.thumbnail.image}}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">{{object.title}}</h6>
+                <p class="mb-0 opacity-75">{{object.description}}</p>
+              </div>
+              <small class="opacity-50 text-nowrap">now</small>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Tags</h4>
+          <ol class="list-unstyled">
+            {% for object in tags %}
+            <li><a href="{{ object.get_absolute_url }}">{{object.title}}</a></li>
+            {% endfor %}
+          </ol>
+        </div>
+
+
+
+        <div class="p-4">
+          <h4 class="fst-italic">Elsewhere</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>

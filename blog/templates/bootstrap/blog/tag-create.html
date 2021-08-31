@@ -1,0 +1,24 @@
+{% extends 'bootstrap/base.html' %}
+{% block content%}
+<!-- Page Content -->
+<div class="container">
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">Categories</h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="index.html">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Blog Home 2</li>
+  </ol>
+  <div class="row">
+    <div class="col-md-8">
+        {% include "bootstrap/includes/forms.html" %}
+  {% include "bootstrap/includes/pagination.html" %}
+  </div>
+  {% include "bootstrap/includes/sidebar-right.html" %}
+  </div>
+</div>
+</div>
+<!-- /.container -->
+{% endblock content%}
