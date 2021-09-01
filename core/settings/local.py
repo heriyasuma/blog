@@ -42,7 +42,7 @@ INSTALLED_APPS += [
     'blog',
     'galleries',
     'dashboard',
-#    'crispy_forms',
+    'crispy_forms',
     'comments',
     'ckeditor',
     'ckeditor_uploader',
@@ -132,7 +132,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'post-list'
+LOGIN_REDIRECT_URL = '/'
 STATIC_ROOT = BASE_DIR / 'static/static_cdn'
 STATICFILES_DIRS = [BASE_DIR / "static",]
 MEDIA_URL = '/media/'
@@ -155,3 +155,5 @@ CKEDITOR_CONFIGS = {
         'toolbar': None,
     },
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

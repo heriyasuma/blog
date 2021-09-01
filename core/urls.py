@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('administrator/', include('django.contrib.auth.urls')),
+#   path('administrator/', include('django.contrib.auth.urls')),
     path('blog/', include('blog.urls')),
     path('administrator/', include('dashboard.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
