@@ -8,6 +8,7 @@ from . views import (
     tag_detail_view,
     tag_create_view,
     search_results_view,
+    theme_dev_view,
     )
 
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('tag/<slug:slug>', tag_detail_view, name='tag-detail'),
     path('tag/create/item', tag_create_view, name='tag-create'),
     path('search/', search_results_view, name='search-results'),
+    path('dev/', theme_dev_view, name='dev-main'),
 ]
