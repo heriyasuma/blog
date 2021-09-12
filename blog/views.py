@@ -3,7 +3,6 @@ from . models import Post,Categorie,Tag
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from galleries.models import Gallerie
-from .forms import TagForm
 from comments.forms import CommentForm
 from comments.models import Comment
 from random import choices
@@ -11,6 +10,7 @@ from random import choices
 # Create your views here.
 def theme_dev_view(request):
     return render(request,"base/index.html",{})
+
 def categorie_list():
     queryset_list_categorie    = Categorie.objects.all().order_by("title")
     return queryset_list_categorie
@@ -24,10 +24,10 @@ def random_post(q=5):
     rnd_choices = choices(rnd,k=q)
     return rnd_choices
 
-template_location_t='base/blog/'
-template_location='bootstrap/blog/'
+template_location='base/blog/'
+
 def post_list_view(request):
-    template    = template_location_t+'post-list.html'
+    template    = template_location+'post-list.html'
     queryset_list   = Post.objects.all().order_by("-timestamp")
     paginator   = Paginator(queryset_list, 3) # Show 25 contacts per page
     page        = request.GET.get('page')
@@ -41,7 +41,7 @@ def post_list_view(request):
     return render(request,template,context)
 
 def post_detail_view(request,slug):
-    template    = template_location_t+'post-detail.html'
+    template    = template_location+'post-detail.html'
     instance    = get_object_or_404(Post,slug=slug)
 
     queryset_gallerie = get_object_or_404(Gallerie,title=instance.thumbnail)
@@ -75,7 +75,7 @@ def post_detail_view(request,slug):
     return render(request,template,context)
 
 def categorie_list_view(request):
-    template    = template_location_t+'categorie-list.html'
+    template    = template_location+'categorie-list.html'
     queryset_list    = Categorie.objects.all().order_by("-timestamp")
     paginator   = Paginator(queryset_list, 10) # Show 25 contacts per page
     page        = request.GET.get('page')
@@ -89,7 +89,7 @@ def categorie_list_view(request):
     return render(request,template,context)
 
 def categorie_detail_view(request,slug):
-    template        = template_location_t+'categorie-detail.html'
+    template        = template_location+'categorie-detail.html'
     queryset        = get_object_or_404(Categorie,slug=slug)
     queryset_post   = Post.objects.filter(category=queryset.id).order_by("-timestamp")
     context={
@@ -102,7 +102,7 @@ def categorie_detail_view(request,slug):
     return render(request,template,context)
 
 def tag_list_view(request):
-    template    = template_location_t+'tag-list.html'
+    template    = template_location+'tag-list.html'
     queryset_list    = Tag.objects.all().order_by("-timestamp")
     paginator   = Paginator(queryset_list, 10) # Show 25 contacts per page
     page        = request.GET.get('page')
@@ -116,7 +116,7 @@ def tag_list_view(request):
     return render(request,template,context)
 
 def tag_detail_view(request,slug):
-    template    = template_location_t+'tag-detail.html'
+    template    = template_location+'tag-detail.html'
     queryset    = get_object_or_404(Tag,slug=slug)
     queryset_post   = Post.objects.filter(tag=queryset.id).order_by("-timestamp")
     context={
@@ -129,7 +129,7 @@ def tag_detail_view(request,slug):
     return render(request,template,context)
 
 #def search_results_view(request):
-#    template    = template_location_t+'search-results.html'
+#    template    = template_location+'search-results.html'
 #    # if this is a POST request we need to process the form data
 #    if request.method == 'POST':
 #        searched    = request.POST['searched']
@@ -144,7 +144,7 @@ def tag_detail_view(request,slug):
 #    return render(request,template,context)
 
 def search_results_view(request):
-    template    = template_location_t+'search-results.html'
+    template    = template_location+'search-results.html'
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         searched    = request.POST['searched']
@@ -156,19 +156,5 @@ def search_results_view(request):
         'categorie':categorie_list(),
         'tags': tag_list(),
         'random_post': random_post(),
-    }
-    return render(request,template,context)
-
-def tag_create_view(request):
-    template    = template_location+'tag-create.html'
-    if request.method == 'POST':
-        forms = TagForm(request.POST)
-        if forms.is_valid():
-            forms.save()
-            forms = TagForm()
-    else:
-        forms = TagForm()
-    context={
-        "form":forms
     }
     return render(request,template,context)

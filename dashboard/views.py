@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import RegistrationsForm
 from django.contrib.auth.forms import AuthenticationForm #add this
-
+from blog.models import *
+from .forms import TagForm
 
 # Create your views here.
 template_location='base/dashboard/'
@@ -50,3 +51,17 @@ def logout_view(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("login")
+
+def tag_create_view(request):
+    template    = template_location+'tag-create.html'
+    if request.method == 'POST':
+        forms = TagForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            forms = TagForm()
+    else:
+        forms = TagForm()
+    context={
+        "form":forms
+    }
+    return render(request,template,context)
