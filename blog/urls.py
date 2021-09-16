@@ -13,11 +13,11 @@ from . views import (
 
 urlpatterns = [
     path('', post_list_view, name='post-list'),
-    path('<slug:slug>', post_detail_view, name='post-detail'),
-    path('categorie/', categorie_list_view, name='categorie-list'),
+    path('detail/<slug:slug>', post_detail_view, name='post-detail'),
+    path('categorie', categorie_list_view, name='categorie-list'),
     path('categorie/<slug:slug>', categorie_detail_view, name='categorie-detail'),
     path('tag', tag_list_view, name='tag-list'),
     path('tag/<slug:slug>', tag_detail_view, name='tag-detail'),
-    path('search/', search_results_view, name='search-results'),
-    path('dev/', theme_dev_view, name='dev-main'),
+    path('search', search_results_view, name='search-results'),
+    path('dev', theme_dev_view, name='dev-main'),
 ]
