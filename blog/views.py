@@ -9,7 +9,7 @@ from random import choices
 
 # Create your views here.
 def theme_dev_view(request):
-    return render(request,"strapnews/index.html",{})
+    return render(request,"base/index.html",{})
 
 def categorie_list():
     queryset_list_categorie    = Categorie.objects.all().order_by("title")
